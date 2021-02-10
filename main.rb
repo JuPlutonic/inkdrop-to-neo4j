@@ -3,4 +3,6 @@ require 'json'
 
 # require_relative './neo4j'
 
-pp Dir.glob('./data/*.json')
+files = Dir.glob('./data/*.json').map do |file_name|
+  JSON.parse(File.read(file_name))
+end

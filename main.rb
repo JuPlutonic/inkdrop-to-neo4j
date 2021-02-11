@@ -1,7 +1,7 @@
-# require 'pp'
+require 'pp'
 require 'json'
 
-# require_relative './neo4j'
+require_relative './neo4j_export'
 require_relative './parse_inkdrop_backup_folder'
 
 inkdrop = ParseInkdropBackupFolder.new.call('./data/*.json')

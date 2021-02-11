@@ -3,7 +3,10 @@
 source 'https://rubygems.org'
 
 gem 'json'
-# gem 'pp'
+gem 'pp'
+gem 'neo4j-ruby-driver'
+gem 'concurrent-ruby'
 
 gem 'rubocop', require: false
 gem 'overcommit', require: false
+

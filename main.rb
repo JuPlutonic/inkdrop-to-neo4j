@@ -11,3 +11,7 @@ puts "Parse InkDrop backup files:"
 puts "notes: #{inkdrop[:notes].count} tags: #{inkdrop[:tags].count} books: #{inkdrop[:books].count}"
 puts
 
+db = GraphDB.new
+db.create_tags(
+  inkdrop[:tags].map { |tag| { id: tag['_id'], title: tag['name'] } }
+)

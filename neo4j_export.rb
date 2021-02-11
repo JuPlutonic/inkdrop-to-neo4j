@@ -28,14 +28,11 @@ class GraphDB
   end
 
   def create_tags(tags)
-    driver.session do |session|
-      session.write_transaction do |tx|
-        tags.each do |tag|
-          tx.run("CREATE (t:Tag { id: $id, title: $title }) RETURN t",
-                 id: tag[:id],
-                 title: tag[:title])
-        end
-      end
+    tags.each do |tag|
+      driver.session { |session| session.run("CREATE (t:Tag { id: $id, title: $title }) RETURN t",
+                                             id: tag[:id],
+                                             title: tag[:title]
+                                            ) }
     end
   end
 end

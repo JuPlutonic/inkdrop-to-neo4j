@@ -12,6 +12,15 @@ puts "notes: #{inkdrop[:notes].count} tags: #{inkdrop[:tags].count} books: #{ink
 puts
 
 db = GraphDB.new
-db.create_tags(
+
+puts 'Create tag nodes'
+
+db.create_tag_nodes(
   inkdrop[:tags].map { |tag| { id: tag['_id'], title: tag['name'] } }
+)
+
+puts 'Create book nodes'
+
+db.create_book_nodes(
+  inkdrop[:books].map { |book| { id: book['_id'], title: book['name'] } }
 )

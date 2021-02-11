@@ -27,7 +27,7 @@ class GraphDB
                                                    encryption: false)
   end
 
-  def create_tags(tags)
+  def create_tag_nodes(tags)
     tags.each do |tag|
       driver.session { |session| session.run("CREATE (t:Tag { id: $id, title: $title }) RETURN t",
                                              id: tag[:id],
@@ -35,4 +35,12 @@ class GraphDB
                                             ) }
     end
   end
-end
+
+  def create_book_nodes(books)
+  books.each do |book|
+    driver.session { |session| session.run("CREATE (t:Book { id: $id, title: $title }) RETURN t",
+                                           id: book[:id],
+                                           title: book[:title]
+                                          ) }
+  end
+end                                                                                             end

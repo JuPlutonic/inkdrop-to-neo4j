@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 gem 'json'
-gem 'pp'
+# gem 'pp'
 
 gem 'rubocop', require: false
 gem 'overcommit', require: false

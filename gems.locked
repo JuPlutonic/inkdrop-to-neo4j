@@ -11,9 +11,6 @@ GEM
     parallel (1.20.1)
     parser (3.0.0.0)
       ast (~> 2.4.1)
-    pp (0.2.0)
-      prettyprint
-    prettyprint (0.1.0)
     rainbow (3.0.0)
     regexp_parser (2.0.3)
     rexml (3.2.4)
@@ -37,8 +34,7 @@ PLATFORMS
 DEPENDENCIES
   json
   overcommit
-  pp
   rubocop
 
 BUNDLED WITH
-   2.2.3
+   2.2.9

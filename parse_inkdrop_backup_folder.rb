@@ -23,6 +23,8 @@ class ParseInkdropBackupFolder
       end
     end
 
+    inkdrop[:tags].map! { |tag| { id: tag['_id'], title: tag['name'] } }
+    inkdrop[:books].map! { |book| { id: book['_id'], parent_id: book['parentBookId'], title: book['name'] } }
     inkdrop
   end
 end

@@ -15,19 +15,13 @@ db = GraphDB.new
 
 puts 'Create tag nodes'
 
-db.create_tag_nodes(
-  inkdrop[:tags].map { |tag| { id: tag['_id'], title: tag['name'] } }
-)
+db.create_tag_nodes(inkdrop[:tags])
 
 puts 'Create book nodes'
 
-db.create_book_nodes(
-  inkdrop[:books].map { |book| { id: book['_id'], title: book['name'] } }
-)
+db.create_book_nodes(inkdrop[:books])
 
 puts 'Create book relations'
 
-db.create_book_relations(
-  inkdrop[:books].map { |book| { id: book['_id'], parent_id: book['parentBookId'], title: book['name'] } }
-)
+db.create_book_relations(inkdrop[:books])
 

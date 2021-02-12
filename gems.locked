@@ -15,6 +15,8 @@ GEM
       concurrent-ruby (~> 1.0)
     iniparse (1.5.0)
     json (2.5.1)
+    kramdown (2.3.0)
+      rexml
     minitest (5.14.3)
     neo4j-ruby-driver (1.7.4)
       activesupport
@@ -57,6 +59,7 @@ PLATFORMS
 DEPENDENCIES
   concurrent-ruby
   json
+  kramdown
   neo4j-ruby-driver
   overcommit
   pp

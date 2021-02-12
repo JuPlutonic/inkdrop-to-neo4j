@@ -6,6 +6,7 @@ gem 'json'
 gem 'pp'
 gem 'neo4j-ruby-driver'
 gem 'concurrent-ruby'
+gem 'kramdown'
 
 gem 'rubocop', require: false
 gem 'overcommit', require: false

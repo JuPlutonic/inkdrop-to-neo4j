@@ -28,3 +28,12 @@ db.create_book_relations(inkdrop[:books])
 puts 'Create note nodes'
 
 db.create_note_nodes(inkdrop[:notes])
+
+puts 'Create note <-> tag relations'
+
+db.create_note_tag_relations(inkdrop[:notes])
+
+puts 'Create note <-> book relations'
+
+db.create_note_book_relations(inkdrop[:notes])
+

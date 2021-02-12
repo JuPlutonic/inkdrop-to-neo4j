@@ -54,7 +54,7 @@ class GraphDB
     books.each do |book|
       driver.session do |session|
         session.run("
-          MATCH (b:Book),(parent:Book)
+          MATCH (b:Book), (parent:Book)
           WHERE b.id = $id AND parent.id = $parent_id
           CREATE (b)-[r:PARENT_BOOK]->(parent)
           RETURN type(r)
@@ -70,6 +70,32 @@ class GraphDB
           CREATE (n:Note { id: $id, title: $title })
           RETURN n
         ", id: note[:id], title: note[:title])
+      end
+    end
+  end
+
+  def create_note_tag_relations(notes)
+    notes.each do |note|
+      note[:tags].each do |tag_id|
+        driver.session do |session|
+          session.run("MATCH (n:Note), (t:Tag)
+                       WHERE n.id = $id AND t.id = $tag_id
+                       CREATE (n)-[r:TAG]->(t) RETURN n
+                      ", id: note[:id], tag_id: tag_id)
+        end
+      end
+    end
+  end
+
+  def create_note_book_relations(notes)
+    notes.each do |note|
+      driver.session do |session|
+        session.run("
+          MATCH (n:Note), (b:Book)
+          WHERE n.id = $id AND b.id = $book_id
+          CREATE (n)-[r:BOOK]->(b)
+          RETURN n
+        ", id: note[:id], book_id: note[:book_id])
       end
     end
   end

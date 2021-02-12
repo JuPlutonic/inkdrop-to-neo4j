@@ -25,3 +25,6 @@ puts 'Create book relations'
 
 db.create_book_relations(inkdrop[:books])
 
+puts 'Create note nodes'
+
+db.create_note_nodes(inkdrop[:notes])

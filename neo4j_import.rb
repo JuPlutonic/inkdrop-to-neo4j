@@ -61,4 +61,15 @@ class GraphDB
       end
     end
   end
+
+  def create_note_nodes(notes)
+    notes.each do |note|
+      driver.session do |session|
+        session.run("
+          CREATE (n:Note { id: $id, title: $title })
+          RETURN n
+        ", id: note[:id], title: note[:title])
+      end
+    end
+  end
 end

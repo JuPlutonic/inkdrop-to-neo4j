@@ -25,6 +25,7 @@ class GraphDB
      @driver = Neo4j::Driver::GraphDatabase.driver('bolt://0.0.0.0:7687',
                                                    Neo4j::Driver::AuthTokens.basic('neo4j','hello'),
                                                    encryption: false)
+     @driver.session { |session| session.run("MATCH (n) DETACH DELETE n") }
   end
 
   def create_tag_nodes(tags)

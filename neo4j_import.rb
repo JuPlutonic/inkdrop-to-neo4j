@@ -29,18 +29,36 @@ class GraphDB
 
   def create_tag_nodes(tags)
     tags.each do |tag|
-      driver.session { |session| session.run("CREATE (t:Tag { id: $id, title: $title }) RETURN t",
-                                             id: tag[:id],
-                                             title: tag[:title]
-                                            ) }
+      driver.session do |session|
+        session.run("
+          CREATE (t:Tag { id: $id, title: $title })
+          RETURN t
+        ", id: tag[:id], title: tag[:title])
+      end
     end
   end
 
   def create_book_nodes(books)
-  books.each do |book|
-    driver.session { |session| session.run("CREATE (t:Book { id: $id, title: $title }) RETURN t",
-                                           id: book[:id],
-                                           title: book[:title]
-                                          ) }
+    books.each do |book|
+      driver.session do |session|
+        session.run("
+          CREATE (t:Book { id: $id, title: $title })
+          RETURN t
+        ", id: book[:id], title: book[:title])
+      end
+    end
   end
-end                                                                                             end
+
+  def create_book_relations(books)
+    books.each do |book|
+      driver.session do |session|
+        session.run("
+          MATCH (b:Book),(parent:Book)
+          WHERE b.id = $id AND parent.id = $parent_id
+          CREATE (b)-[r:PARENT_BOOK]->(parent)
+          RETURN type(r)
+        ", id: book[:id], parent_id: book[:parent_id])
+      end
+    end
+  end
+end

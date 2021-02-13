@@ -45,7 +45,8 @@ class ParseInkdropBackupFolder
     # Then push l and <enter> button and write
     # noteN = inkdrop[:notes][N] − where Ns is
     # a number (it must be a note where you see `inkdrop://note` link/links).
-    # To debug nested_notes urls, write − noteN[:body].match(/\(inkdrop:\/\/note[[:punct:]](.+)\)/)
+    # To debug in this note nested_notes links, write −
+    # noteN[:body].match(/\(inkdrop:\/\/note[[:punct:]](.+)\)/).captures
     #
     # If you always use a related_notes template
     # you must change the inkdrop[:notes] here above the comments
@@ -58,7 +59,7 @@ class ParseInkdropBackupFolder
   private
 
     def get_note_links(body, part)
-      match = body.split('RELATED NOTES:')[part]&.match(/\(inkdrop:\/\/note[[:punct:]](.+)\)/)
-      match ? match.captures.map { |matched_link| "note:#{matched_link}" } : []
+      results = body.split('RELATED NOTES:')[part]&.scan(/\(inkdrop:\/\/note[[:punct:]](.+)\)/)
+      results ? results.map { |matched_link| "note:#{matched_link.first}" } : []
     end
 end

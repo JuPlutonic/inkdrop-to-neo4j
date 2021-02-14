@@ -99,4 +99,30 @@ class GraphDB
       end
     end
   end
+
+  # rubocop:disable Metrics/MethodLength
+  def create_note_relations(notes)
+    notes.each do |note|
+      note[:nested_notes].each do |note_id|
+        driver.session do |session|
+          session.run("
+            MATCH (n:Note), (anoth:Note)
+            WHERE n.id = $id AND anoth.id = $anoth_note_id
+            CREATE (n)-[r:NESTED]->(anoth)
+            RETURN n
+          ", id: note[:id], anoth_note_id: note_id)
+        end
+      end
+    # note[:related_notes].each do |note_id|
+    #   driver.session do |session|
+    #     session.run("
+    #       MATCH (n:Note), (anoth:Note)
+    #       WHERE n.id = $id AND anoth.id = $anoth_note_id
+    #       CREATE (n)-[r:RELATED]->(anoth)
+    #       RETURN n
+    #     ", id: note[:id], anoth_note_id: note_id)
+    #   end
+    # end
+    end
+  end
 end

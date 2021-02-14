@@ -14,26 +14,23 @@ puts
 db = GraphDB.new
 
 puts 'Create tag nodes'
-
 db.create_tag_nodes(inkdrop[:tags])
 
 puts 'Create book nodes'
-
 db.create_book_nodes(inkdrop[:books])
 
-puts 'Create book relations'
-
+puts 'Create book↔book relations'
 db.create_book_relations(inkdrop[:books])
 
 puts 'Create note nodes'
-
 db.create_note_nodes(inkdrop[:notes])
 
-puts 'Create note <-> tag relations'
-
+puts 'Create note↔tag relations'
 db.create_note_tag_relations(inkdrop[:notes])
 
-puts 'Create note <-> book relations'
-
+puts 'Create note↔book relations'
 db.create_note_book_relations(inkdrop[:notes])
+
+puts 'Create note↔note relations'
+db.create_note_relations(inkdrop[:notes])
 

@@ -56,10 +56,11 @@ class ParseInkdropBackupFolder
 
     inkdrop
   end
-  private
 
-    def get_note_links(body, part)
-      results = body.split('RELATED NOTES:')[part]&.scan(/\(inkdrop:\/\/note[[:punct:]](.+)\)/)
-      results ? results.map { |matched_link| "note:#{matched_link.first}" } : []
-    end
+  private # => ParseInkdropBackupFolder
+
+  def get_note_links(body, part)
+    results = body.split('RELATED NOTES:')[part]&.scan(/\(inkdrop:\/\/note[[:punct:]](.+)\)/)
+    results ? results.map { |matched_link| "note:#{matched_link.first}" } : []
+  end
 end

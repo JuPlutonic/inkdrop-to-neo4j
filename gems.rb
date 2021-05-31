@@ -2,12 +2,8 @@
 
 source 'https://rubygems.org'
 
-gem 'json'
-gem 'pp'
-gem 'neo4j-ruby-driver'
 gem 'concurrent-ruby'
+gem 'json'
+gem 'neo4j-ruby-driver'
+gem 'pp'
 # gem 'kramdown'
-
-gem 'rubocop', require: false
-gem 'overcommit', require: false
-
